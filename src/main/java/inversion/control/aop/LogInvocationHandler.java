@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 
 /**
  * Created by pyshankov on 10.12.2016.
+ * defines a rule how to implement proxy for object
  */
 
 public class LogInvocationHandler implements MethodInterceptor {
@@ -24,9 +25,9 @@ public class LogInvocationHandler implements MethodInterceptor {
     }
 
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        log.doLog(method,"before");
+        log.doLog(method,"before"); //<-joinpoint
         method.invoke(replaceObj,objects);
-        log.doLog(method,"after");
+        log.doLog(method,"after");//<-joinpoint
         return o;
     }
 }

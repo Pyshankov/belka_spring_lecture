@@ -12,23 +12,19 @@ import org.springframework.stereotype.Component;
 /**
  * Created by pyshankov on 10.12.2016.
  */
-
-public class HelloWorldBeanPostProcessor implements BeanPostProcessor {
+@Component
+public class TransporterLogAspectBeanPostProcessor implements BeanPostProcessor {
 
     @Autowired
     Log logger;
 
     public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
-        if(o instanceof String){
-            System.out.println("before: "+o);
-        }
+
         return o;
     }
 
     public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
-        if(o instanceof String){
-            System.out.println("after: "+o);
-        }
+
         if(o instanceof Transporter){
             o = Enhancer.create(Transporter.class,new LogInvocationHandler(logger,o));
         }

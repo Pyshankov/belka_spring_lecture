@@ -7,11 +7,8 @@
         <constructor-arg value="hello world!"/>
     </bean>
 
-    <bean id="railTransportMethod" class="dependency.injection.RailTransportMethod"/>
+    <bean id="railTransportMethod" class="dependency.injection.RailTransportMethod" scope="prototype" />
 
-    <bean id="transporter" class="dependency.injection.Transporter" >
-    <!--<bean id="transporter" class="dependency.injection.Transporter" autowire="byType">-->
-        <constructor-arg ref="helloWorld"/>
-    </bean>
+    <bean id="transporter" class="dependency.injection.Transporter"  autowire="byType" />
 
 </beans>
